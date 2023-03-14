@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+
+
+contract Counter{
+    uint public X;
+    address private owner;
+
+    constructor(){
+        owner=msg.sender;
+        X=5;
+    }
+
+    modifier onlyOwner(){
+        require(msg.sender == owner,"address error");
+        _;
+    }
+    function add(uint _x) external {
+        X=_x;
+    }
+
+    function count() onlyOwner external {
+        X+=1;
+    }
+}
